@@ -15,36 +15,24 @@
   import logoSkil from '@/assets/svg/skillmaster.svg';
   import {ref} from 'vue';
   const Skill= ref(logoSkil);
-
-
-
-  
-  
-  </script>
-
-
-  
-  <script>
-  export default {
-    data() {
-      return {
-        buttons: [
+  const emit = defineEmits(['button-clicked']);
+  const buttons = ref([
           { id: 1, label: 'Тестирование', class: 'button-primary' },
           { id: 2, label: 'Разделы' },
           { id: 3, label: 'Рейтинг' },
           { id: 4, label: 'Магазин' },
           { id: 5, label: 'Профиль' },
           { id: 6, label: 'Еще' },
-        ]
-      };
-    },
-    methods: {
-      handleClick(buttonId) {
-        this.$emit('button-clicked', buttonId); // Отправляем событие родителю
+        ]) ;
+  const handleClick=(buttonId) =>{
+        emit('button-clicked', buttonId); // Отправляем событие родителю
       }
-    }
-  };
+
+  
   </script>
+
+
+  
   
   <style scoped>
   @import '/src/component/srift.css';

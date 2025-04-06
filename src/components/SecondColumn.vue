@@ -2,7 +2,10 @@
     <div class="second-column" :style="{ width: width }">
       <!-- Динамический компонент -->
       <transition name="fade">
-        <component :is="activeComponent" v-if="activeComponent" ></component>
+        <component
+        v-if="component[props.activeComponent]"
+        :is="component[props.activeComponent]"
+      />
         <ComponentOne v-else />
         
         
@@ -11,18 +14,16 @@
     </div>
   </template>
   
-  <script>
-  // Импортируем все возможные компоненты для второй колонки
+  <script setup>
   import ComponentOne from './twokolon/ComponentOne.vue';
   import ComponentTwo from './twokolon/ComponentTwo.vue';
   import ComponentThree from './twokolon/ComponentThree.vue';
   import ComponentFour from './twokolon/ComponentFour.vue';
   import ComponentFive from './twokolon/ComponentFive.vue';
-  import Component_test from './twokolon/Component_test.vue';
-  
-  export default {
-    props: {
-      width: {
+  import ComponentTest from './twokolon/ComponentTest.vue';
+  import { defineProps } from 'vue';
+  const props = defineProps({
+    width: {
         type: String,
         required: true
       },
@@ -30,17 +31,21 @@
         type: String,
         required: true
       }
-    },
-    components: {
-      ComponentOne,
-      ComponentTwo,
-      ComponentThree,
-      ComponentFour,
-      ComponentFive,
-      Component_test,
-    }
-  };
+  });
+  const component = {
+    ComponentOne,
+    ComponentTwo,
+    ComponentThree,
+    ComponentFour,
+    ComponentFive,
+    ComponentTest,
+
+  }
+  
+
   </script>
+  
+  
   
   <style scoped>
   .second-column {

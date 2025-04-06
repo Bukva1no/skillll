@@ -12,8 +12,8 @@
           
         <form @submit.prevent="handleLogin">
         <div class ="frame-119">
-          <input type="text" v-model="username" placeholder="Почта / Номер телефона" class="login-input">
-          <input type="password" v-model="password" placeholder="Пароль" class="login-input">
+          <input type="text" v-model="user.username" placeholder="Почта / Номер телефона" class="login-input">
+          <input type="password" v-model="user.password" placeholder="Пароль" class="login-input">
           <button class="login-button">Войти</button>
         </div>
       </form>
@@ -48,29 +48,188 @@
     
   </template>
   
-  <script>
-import router from '@/router';
 
-  export default {
-    data() {
-      return {
-        username: '',
-        password: ''
-      };
-    },
-    methods: {
-      handleLogin() {
-        alert('Вы вошли как ' + this.username);
-        this.$router.push('/workspace');
-      },
-      registBut (){
-        this.$router.push('/Register');
+  <script setup>
+  import router from '@/router';
+  import {ref} from 'vue';
+  
+  const user = ref({
+  username: '',
+  password: ''
+});
+  console.log (user.value);
+
+
+function handleLogin() {
+  if (!user.value.username || !user.value.password) {
+    alert('Заполните все поля ');
+    return;
+  }
+  alert('Вы вошли как ' + user.value.username);
+  router.push('/workspace');
+}
+const registBut = ()=>{
+        router.push('/Register');
       }
-    }
-  };
-  </script>
+ </script>
+
   
-  <style scoped>
-  @import '/src/component/theme.css' ;
   
+  <style >
+  
+
+  * {
+  box-sizing: border-box;
+}
+
+
+  
+  .register-button {
+  position: fixed;
+  right: 24px;
+  width: 251px;
+  height: 62px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  padding: 16px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29.26px;
+  color: #8529CE;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.register-button:hover {
+  background-color: #f0f0f0;
+}
+
+
+.frame-121 {
+  position: relative;
+  flex-direction: column;
+    width: 491px; /* Фиксированная ширина */
+    height: 455px; /* Адаптивная высота */
+    gap: 24px; /* Задаем промежуток между элементами внутри фрейма */
+    z-index: 0
+}
+.frame-120 {
+    width: 497px;
+    height: 366px;
+    gap: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    align-items: center;
+}
+.login-title{
+    width: 97px;
+    height: 44px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 43.88px;
+    text-align:justify;
+    color: #8529CE;
+
+}
+.frame-119{
+    position: relative;
+    flex-direction: column;
+    width: 497px; /* Фиксированная ширина */
+    height: 466px; /* Адаптивная высота */
+    gap: 24px; /* Задаем промежуток между элементами внутри фрейма */
+    display: flex; 
+    flex-direction: column;
+}
+.login-input{
+  width: 497px;
+  height: 76px;
+  border-radius: 15px;
+  padding-top: 16px;
+  padding-right: 24px;
+  padding-bottom: 16px;
+  padding-left: 24px;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400px;
+  font-size: 24px;
+  line-height: 29.26px;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: justify;
+  background-color: rgba(151, 103, 198, 0.2); 
+  border: none;
+  z-index: 0;
+}
+.login-button {
+  width: 497px;
+  height: 62px;
+  border-radius: 15px;
+  padding-top: 16px;
+  padding-right: 24px;
+  padding-bottom: 16px;
+  gap: 10px;
+  background-color: #8529CE; /* Фиолетовый фон */
+  color: #FFFFFF; /* Белый цвет текста */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29.26px;
+  text-align: center;
+  border: none;
+}
+
+.forgot .login-forgot a {
+  color: #8529CE; /* Фиолетовый цвет для ссылки */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29.26px;
+  letter-spacing: 0%;
+  text-align: justify;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness:auto ;
+}
+  
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+
+.forgot{
+  margin-top: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29.26px;
+  letter-spacing: 0%;
+  text-align: justify;
+  color: black;
+  width: 402px;
+  height: 29px;
+  gap: 24px;
+  position: relative;
+  top: 24px; /* Спускает элемент на 24px вниз */
+
+}
+
+
+
+.reg-title{
+  width: 97px;
+  height: 44px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43.88px;
+  text-align:justify;
+  color: #8529CE;
+
+}
   </style>
